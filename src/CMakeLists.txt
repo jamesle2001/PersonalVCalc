@@ -1,7 +1,18 @@
 # Gather our source files in this directory.
 set(
   vcalc_src_files
+    "${CMAKE_CURRENT_SOURCE_DIR}/AST.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/ASTBuilder.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/BaseScope.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/BuiltInTypeSymbol.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/GlobalScope.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/LocalScope.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/Scope.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/Symbol.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/SymbolTable.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/Type.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/VariableSymbol.cpp"
 )
 
 # Build our executable from the source files.
