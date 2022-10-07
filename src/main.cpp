@@ -8,6 +8,7 @@
 
 #include "AST.h"
 #include "ASTBuilder.h"
+#include "DefRef.h"
 
 #include <iostream>
 #include <fstream>
@@ -33,5 +34,8 @@ int main(int argc, char **argv) {
   ASTBuilder builder;
   std::shared_ptr<AST> ast = std::any_cast<std::shared_ptr<AST>>(builder.visit(tree));
   
+  // DefRef
+  DefRef defref;
+	defref.visit(ast);
   return 0;
 }
