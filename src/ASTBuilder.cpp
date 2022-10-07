@@ -3,8 +3,8 @@
 
 std::any ASTBuilder::visitCompilationUnit(VCalcParser::CompilationUnitContext *ctx) {
     std::shared_ptr<AST> t = std::make_shared<AST>();
-    for ( auto *child : ctx->children ) {
-        t->addChild(visit(child));
+    for (auto stat: ctx->statement()) {
+        t->addChild(visit(stat));
     }
     return t;
 }
