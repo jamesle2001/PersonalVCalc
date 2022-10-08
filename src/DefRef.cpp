@@ -7,7 +7,7 @@
 #include "Symbol.h"
 #include "VariableSymbol.h"
 
-DefRef::DefRef() : currentScope(symtab.globals), numExprAncestors(0) { }
+DefRef::DefRef(std::shared_ptr<SymbolTable> symtab) : currentScope(symtab->globals), numExprAncestors(0) { }
 
 void DefRef::visit(std::shared_ptr<AST> t) {
     if ( t->isNil() ) {

@@ -5,12 +5,11 @@
 
 class DefRef {
 private:
-    SymbolTable symtab;
     std::shared_ptr<Scope> currentScope;
     std::shared_ptr<Type> resolveType(std::shared_ptr<AST> t);
     size_t numExprAncestors;
 public:
-    DefRef();
+    DefRef(std::shared_ptr<SymbolTable> symtab);
     void visit(std::shared_ptr<AST> t);
     void visitChildren(std::shared_ptr<AST> t);
     void visitBLOCK_TOKEN(std::shared_ptr<AST> t);
