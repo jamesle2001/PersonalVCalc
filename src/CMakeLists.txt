@@ -13,6 +13,7 @@ set(
     "${CMAKE_CURRENT_SOURCE_DIR}/SymbolTable.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/Type.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/VariableSymbol.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/DefRef.cpp"
 )
 
 # Build our executable from the source files.

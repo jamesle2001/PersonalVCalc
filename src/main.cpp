@@ -8,6 +8,8 @@
 
 #include "AST.h"
 #include "ASTBuilder.h"
+#include "DefRef.h"
+#include "SymbolTable.h"
 
 #include <iostream>
 #include <fstream>
@@ -33,5 +35,12 @@ int main(int argc, char **argv) {
   ASTBuilder builder;
   std::shared_ptr<AST> ast = std::any_cast<std::shared_ptr<AST>>(builder.visit(tree));
   
+  // Initialize the symbol table
+  std::shared_ptr<SymbolTable> symtab = std::make_shared<SymbolTable>();
+
+  // DefRef
+  DefRef defref(symtab);
+	defref.visit(ast);
+
   return 0;
 }
