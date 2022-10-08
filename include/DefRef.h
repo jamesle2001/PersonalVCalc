@@ -5,6 +5,7 @@
 
 class DefRef {
 private:
+    std::shared_ptr<SymbolTable> symtab;
     std::shared_ptr<Scope> currentScope;
     std::shared_ptr<Type> resolveType(std::shared_ptr<AST> t);
     size_t numExprAncestors;

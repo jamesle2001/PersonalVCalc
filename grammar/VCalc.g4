@@ -28,22 +28,22 @@ assignment: ID '=' expression ';' ;
 conditional: IF '(' expression ')' block FI ';' ;
 loop: LOOP '(' expression ')' block POOL ';' ;
 print: PRINT '(' expression ')' ';' ;
-generator: '[' ID IN expression '|' expression ']' ';' ;
-filter: '[' ID IN expression '&' expression ']' ';' ;
 
 block: statement* ;
 
 expression: expr ;
 expr: 
-    '(' expr ')'                      # Parenthesis
-    | expr op1='[' expr op2=']'       # Index
-    | expr op='..' expr               # Range
-    | expr op=('*' | '/') expr        # MulDiv
-    | expr op=('+' | '-') expr        # AddSub
-    | expr op=('>' | '<') expr        # GreaterThanLessThan
-    | expr op=('==' | '!=') expr      # IsEqualIsNotEqual
-    | ID                              # IDAtom
-    | INTEGER                         # IntegerAtom
+    '(' expr ')'                                # Parenthesis
+    | expr op1='[' expr op2=']'                 # Index
+    | expr op='..' expr                         # Range
+    | expr op=('*' | '/') expr                  # MulDiv
+    | expr op=('+' | '-') expr                  # AddSub
+    | expr op=('>' | '<') expr                  # GreaterThanLessThan
+    | expr op=('==' | '!=') expr                # IsEqualIsNotEqual
+    | '[' ID IN expression '|' expression ']'   # Generator
+    | '[' ID IN expression '&' expression ']'   # Filter
+    | ID                                        # IDAtom
+    | INTEGER                                   # IntegerAtom
     ;
 type: INT | VECTOR ;
 

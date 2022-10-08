@@ -48,22 +48,6 @@ std::any ASTBuilder::visitPrint(VCalcParser::PrintContext *ctx) {
     return t;
 }
 
-std::any ASTBuilder::visitGenerator(VCalcParser::GeneratorContext *ctx) {
-    std::shared_ptr<AST> t = std::make_shared<AST>(VCalcParser::GENERATOR_TOKEN);
-    t->addChild(std::make_shared<AST>(ctx->ID()->getSymbol()));
-    t->addChild(visit(ctx->expression(0)));
-    t->addChild(visit(ctx->expression(1)));
-    return t;
-}
-
-std::any ASTBuilder::visitFilter(VCalcParser::FilterContext *ctx) {
-    std::shared_ptr<AST> t = std::make_shared<AST>(VCalcParser::FILTER_TOKEN);
-    t->addChild(std::make_shared<AST>(ctx->ID()->getSymbol()));
-    t->addChild(visit(ctx->expression(0)));
-    t->addChild(visit(ctx->expression(1)));
-    return t;
-}
-
 /* ^(EXPR expr) */
 std::any ASTBuilder::visitExpression(VCalcParser::ExpressionContext *ctx) {
     std::shared_ptr<AST> t = std::make_shared<AST>(VCalcParser::EXPR_TOKEN);
@@ -148,6 +132,22 @@ std::any ASTBuilder::visitIsEqualIsNotEqual(VCalcParser::IsEqualIsNotEqualContex
     }
     t->addChild(visit(ctx->expr(0)));
     t->addChild(visit(ctx->expr(1)));
+    return t;
+}
+
+std::any ASTBuilder::visitGenerator(VCalcParser::GeneratorContext *ctx) {
+    std::shared_ptr<AST> t = std::make_shared<AST>(VCalcParser::GENERATOR_TOKEN);
+    t->addChild(std::make_shared<AST>(ctx->ID()->getSymbol()));
+    t->addChild(visit(ctx->expression(0)));
+    t->addChild(visit(ctx->expression(1)));
+    return t;
+}
+
+std::any ASTBuilder::visitFilter(VCalcParser::FilterContext *ctx) {
+    std::shared_ptr<AST> t = std::make_shared<AST>(VCalcParser::FILTER_TOKEN);
+    t->addChild(std::make_shared<AST>(ctx->ID()->getSymbol()));
+    t->addChild(visit(ctx->expression(0)));
+    t->addChild(visit(ctx->expression(1)));
     return t;
 }
 

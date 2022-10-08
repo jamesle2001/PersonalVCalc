@@ -14,6 +14,7 @@ set(
     "${CMAKE_CURRENT_SOURCE_DIR}/Type.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/VariableSymbol.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/DefRef.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/ExpressionTypeComputation.cpp"
 )
 
 # Build our executable from the source files.
