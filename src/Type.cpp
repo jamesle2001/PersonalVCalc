@@ -1,2 +1,5 @@
 #include "Type.h"
-Type::~Type() {}
+
+namespace vcalc {
+    Type::~Type() {}
+}

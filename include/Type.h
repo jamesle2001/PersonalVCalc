@@ -2,8 +2,10 @@
 
 #include <string>
 
-class Type {
-public:
-    virtual std::string getName() = 0;
-    virtual ~Type();
-};
+namespace vcalc {
+    class Type {
+    public:
+        virtual std::string getName() = 0;
+        virtual ~Type();
+    };
+}

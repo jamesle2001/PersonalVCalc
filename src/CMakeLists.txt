@@ -15,6 +15,7 @@ set(
     "${CMAKE_CURRENT_SOURCE_DIR}/VariableSymbol.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/DefRef.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/ExpressionTypeComputation.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/LLVMIRGenerator.cpp"
 )
 
 # Build our executable from the source files.

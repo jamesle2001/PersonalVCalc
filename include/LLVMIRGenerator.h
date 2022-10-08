@@ -1,17 +1,21 @@
 #pragma once
 
+#include "llvm/IR/IRBuilder.h"
+#include "llvm/IR/LLVMContext.h"
+#include "llvm/IR/Module.h"
+
 #include "AST.h"
 #include "SymbolTable.h"
 
 namespace vcalc {
-    class DefRef {
-    private:
-        std::shared_ptr<SymbolTable> symtab;
-        std::shared_ptr<Scope> currentScope;
-        std::shared_ptr<Type> resolveType(std::shared_ptr<AST> t);
-        size_t numExprAncestors;
+    class LLVMIRGenerator {
     public:
-        DefRef(std::shared_ptr<SymbolTable> symtab);
+        llvm::LLVMContext globalCtx;
+        llvm::IRBuilder<> ir;
+        llvm::Module mod;
+        std::shared_ptr<SymbolTable> symtab;
+        size_t numExprAncestors;
+        LLVMIRGenerator(std::shared_ptr<SymbolTable> symtab);
         void visit(std::shared_ptr<AST> t);
         void visitChildren(std::shared_ptr<AST> t);
         void visitBLOCK_TOKEN(std::shared_ptr<AST> t);

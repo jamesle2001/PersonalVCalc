@@ -1,7 +1,10 @@
 #include "BuiltInTypeSymbol.h"
 
-BuiltInTypeSymbol::BuiltInTypeSymbol(std::string name) : Symbol(name) {}
+namespace vcalc {
+    BuiltInTypeSymbol::BuiltInTypeSymbol(std::string name) : Symbol(name) {}
 
-std::string BuiltInTypeSymbol::getName() {
-    return Symbol::getName();
+    std::string BuiltInTypeSymbol::getName() {
+        return Symbol::getName();
+    }
 }
+

@@ -1,2 +1,5 @@
 #include "Scope.h"
-Scope::~Scope() {}
+
+namespace vcalc {
+    Scope::~Scope() {}
+}

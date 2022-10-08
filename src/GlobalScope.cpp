@@ -1,7 +1,10 @@
 #include "GlobalScope.h"
 
-GlobalScope::GlobalScope() : BaseScope(nullptr) {}
+namespace vcalc {
+    GlobalScope::GlobalScope() : BaseScope(nullptr) {}
 
-std::string GlobalScope::getScopeName() {
-    return "global";
+    std::string GlobalScope::getScopeName() {
+        return "global";
+    }
 }
+

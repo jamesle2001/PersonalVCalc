@@ -33,18 +33,18 @@ int main(int argc, char **argv) {
   antlr4::tree::ParseTree *tree = parser.compilationUnit();
 
   // Build AST
-  ASTBuilder builder;
-  std::shared_ptr<AST> ast = std::any_cast<std::shared_ptr<AST>>(builder.visit(tree));
+  vcalc::ASTBuilder builder;
+  std::shared_ptr<vcalc::AST> ast = std::any_cast<std::shared_ptr<vcalc::AST>>(builder.visit(tree));
   
   // Initialize the symbol table
-  std::shared_ptr<SymbolTable> symtab = std::make_shared<SymbolTable>();
+  std::shared_ptr<vcalc::SymbolTable> symtab = std::make_shared<vcalc::SymbolTable>();
 
   // DefRef
-  DefRef defref(symtab);
+  vcalc::DefRef defref(symtab);
 	defref.visit(ast);
 
   // Expression Type Computation
-  ExpressionTypeComputation expressionTypeComputation(symtab);
+  vcalc::ExpressionTypeComputation expressionTypeComputation(symtab);
   expressionTypeComputation.visit(ast);
   return 0;
 }
