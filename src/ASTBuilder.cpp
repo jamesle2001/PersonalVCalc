@@ -50,7 +50,7 @@ std::any ASTBuilder::visitPrint(VCalcParser::PrintContext *ctx) {
 
 std::any ASTBuilder::visitGenerator(VCalcParser::GeneratorContext *ctx) {
     std::shared_ptr<AST> t = std::make_shared<AST>(VCalcParser::GENERATOR_TOKEN);
-    t->addChild(visit(ctx->ID()));
+    t->addChild(std::make_shared<AST>(ctx->ID()->getSymbol()));
     t->addChild(visit(ctx->expression(0)));
     t->addChild(visit(ctx->expression(1)));
     return t;
@@ -58,7 +58,7 @@ std::any ASTBuilder::visitGenerator(VCalcParser::GeneratorContext *ctx) {
 
 std::any ASTBuilder::visitFilter(VCalcParser::FilterContext *ctx) {
     std::shared_ptr<AST> t = std::make_shared<AST>(VCalcParser::FILTER_TOKEN);
-    t->addChild(visit(ctx->ID()));
+    t->addChild(std::make_shared<AST>(ctx->ID()->getSymbol()));
     t->addChild(visit(ctx->expression(0)));
     t->addChild(visit(ctx->expression(1)));
     return t;

@@ -77,12 +77,14 @@ void DefRef::visitASSIGNMENT_TOKEN(std::shared_ptr<AST> t) {
     t->symbol = vs;
 }
 
-
 void DefRef::visitGENERATOR_TOKEN(std::shared_ptr<AST> t) {
     t->scope = currentScope;
     currentScope = std::make_shared<LocalScope>(currentScope); // push scope
     std::shared_ptr<AST> domainVariableAST = t->children[0];
-    std::shared_ptr<VariableSymbol> vs = std::make_shared<VariableSymbol>(domainVariableAST->token->getText(), nullptr);
+
+    // Declare Domain Variable (Similar to normal variable declaration)
+    std::shared_ptr<Type> intTypeSymbol = std::dynamic_pointer_cast<Type>(currentScope->resolve("int"));
+    std::shared_ptr<VariableSymbol> vs = std::make_shared<VariableSymbol>(domainVariableAST->token->getText(), intTypeSymbol);
     currentScope->define(vs);
     visitChildren(t);
     currentScope = currentScope->getEnclosingScope(); // pop scope
@@ -92,7 +94,10 @@ void DefRef::visitFILTER_TOKEN(std::shared_ptr<AST> t) {
     t->scope = currentScope;
     currentScope = std::make_shared<LocalScope>(currentScope); // push scope
     std::shared_ptr<AST> domainVariableAST = t->children[0];
-    std::shared_ptr<VariableSymbol> vs = std::make_shared<VariableSymbol>(domainVariableAST->token->getText(), nullptr);
+
+    // Declare Domain Variable (Similar to normal variable declaration)
+    std::shared_ptr<Type> intTypeSymbol = std::dynamic_pointer_cast<Type>(currentScope->resolve("int"));
+    std::shared_ptr<VariableSymbol> vs = std::make_shared<VariableSymbol>(domainVariableAST->token->getText(), intTypeSymbol);
     currentScope->define(vs);
     visitChildren(t);
     currentScope = currentScope->getEnclosingScope(); // pop scope
