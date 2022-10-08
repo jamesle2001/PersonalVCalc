@@ -10,6 +10,7 @@
 #include "ASTBuilder.h"
 #include "DefRef.h"
 #include "SymbolTable.h"
+#include "ExpressionTypeComputation.h"
 
 #include <iostream>
 #include <fstream>
@@ -42,5 +43,8 @@ int main(int argc, char **argv) {
   DefRef defref(symtab);
 	defref.visit(ast);
 
+  // Expression Type Computation
+  ExpressionTypeComputation expressionTypeComputation(symtab);
+  expressionTypeComputation.visit(ast);
   return 0;
 }

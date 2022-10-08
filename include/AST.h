@@ -20,6 +20,7 @@ public:
     std::shared_ptr<Scope> scope;  // Populate by DefRef pass
     std::shared_ptr<Symbol> symbol; // Populate by DefRef pass
     std::shared_ptr<Type> evalType;  // Populate by Type pass
+    std::shared_ptr<Type> promoteToType;  // Populate by Type pass
 
     AST(); // for making nil-rooted nodes
     AST(antlr4::Token* token);
