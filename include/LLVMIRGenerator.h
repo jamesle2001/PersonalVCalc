@@ -16,8 +16,11 @@ namespace vcalc {
         llvm::IRBuilder<> ir;
         llvm::Module mod;
         llvm::Function *mainFunction;
-
+        size_t numBasicBlocks;
+        size_t numVariables;
         size_t numExprAncestors;
+
+        std::string &outputFileName;
         LLVMIRGenerator(std::string &outputFileName);
         void visit(std::shared_ptr<AST> t);
         void visitChildren(std::shared_ptr<AST> t);
@@ -35,5 +38,6 @@ namespace vcalc {
         void visitEXPR_TOKEN(std::shared_ptr<AST> t);
         void visitLOOP_TOKEN(std::shared_ptr<AST> t);
         void visitCONDITIONAL_TOKEN(std::shared_ptr<AST> t);
+        void visitINDEX_TOKEN(std::shared_ptr<AST> t);
     };
 }
