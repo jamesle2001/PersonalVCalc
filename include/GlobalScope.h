@@ -2,8 +2,11 @@
 
 #include "BaseScope.h"
 
-class GlobalScope : public BaseScope {
-public:
-    GlobalScope();
-    std::string getScopeName() override;
-};
+
+namespace vcalc {
+    class GlobalScope : public BaseScope {
+    public:
+        GlobalScope();
+        std::string getScopeName() override;
+    };
+}

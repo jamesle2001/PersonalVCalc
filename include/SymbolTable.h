@@ -8,12 +8,14 @@
 #include "Symbol.h"
 #include "GlobalScope.h"
 
-class SymbolTable { // single-scope symtab
-protected:
-    void initTypeSystem();
-public:	
-    std::shared_ptr<GlobalScope> globals;
-    SymbolTable();
+namespace vcalc {
+    class SymbolTable { // single-scope symtab
+    protected:
+        void initTypeSystem();
+    public:	
+        std::shared_ptr<GlobalScope> globals;
+        SymbolTable();
 
-    std::string toString();
-};
+        std::string toString();
+    };
+}
