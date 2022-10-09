@@ -103,13 +103,13 @@ namespace vcalc {
             } else if (t->getNodeType() == VCalcParser::DIV) {
                 t->llvmValue = ir.CreateSDiv(t->children[0]->llvmValue, t->children[1]->llvmValue);
             } else if (t->getNodeType() == VCalcParser::GREATERTHAN) {
-                t->llvmValue = ir.CreateICmpSGT(t->children[0]->llvmValue, t->children[1]->llvmValue);
+                t->llvmValue = ir.CreateIntCast(ir.CreateICmpSGT(t->children[0]->llvmValue, t->children[1]->llvmValue), llvm::Type::getInt32Ty(globalCtx), true);
             } else if (t->getNodeType() == VCalcParser::LESSTHAN) {
-                t->llvmValue = ir.CreateICmpSLT(t->children[0]->llvmValue, t->children[1]->llvmValue);
+                t->llvmValue = ir.CreateIntCast(ir.CreateICmpSLT(t->children[0]->llvmValue, t->children[1]->llvmValue), llvm::Type::getInt32Ty(globalCtx), true);
             } else if (t->getNodeType() == VCalcParser::ISEQUAL) {
-                t->llvmValue = ir.CreateICmpEQ(t->children[0]->llvmValue, t->children[1]->llvmValue);
+                t->llvmValue = ir.CreateIntCast(ir.CreateICmpEQ(t->children[0]->llvmValue, t->children[1]->llvmValue), llvm::Type::getInt32Ty(globalCtx), true);
             } else if (t->getNodeType() == VCalcParser::ISNOTEQUAL) {
-                t->llvmValue = ir.CreateICmpNE(t->children[0]->llvmValue, t->children[1]->llvmValue);
+                t->llvmValue = ir.CreateIntCast(ir.CreateICmpNE(t->children[0]->llvmValue, t->children[1]->llvmValue), llvm::Type::getInt32Ty(globalCtx), true);
             }
         } else {
             // TODO: Handle the case where the operations are with vector
