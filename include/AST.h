@@ -1,6 +1,8 @@
 #pragma once
 
 #include "antlr4-runtime.h"
+#include "llvm/IR/Module.h"
+
 #include "Type.h"
 #include "Scope.h"
 #include "Symbol.h"
@@ -22,6 +24,7 @@ namespace vcalc {
         std::shared_ptr<Symbol> symbol; // Populate by DefRef pass
         std::shared_ptr<Type> evalType;  // Populate by Type pass
         std::shared_ptr<Type> promoteToType;  // Populate by Type pass
+        llvm::Value *llvmValue;
 
         AST(); // for making nil-rooted nodes
         AST(antlr4::Token* token);

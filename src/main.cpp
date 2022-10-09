@@ -11,9 +11,11 @@
 #include "DefRef.h"
 #include "SymbolTable.h"
 #include "ExpressionTypeComputation.h"
+#include "LLVMIRGenerator.h"
 
 #include <iostream>
 #include <fstream>
+#include <string>
 
 int main(int argc, char **argv) {
   if (argc < 3) {
@@ -46,5 +48,10 @@ int main(int argc, char **argv) {
   // Expression Type Computation
   vcalc::ExpressionTypeComputation expressionTypeComputation(symtab);
   expressionTypeComputation.visit(ast);
+
+  // LLVM IR Codegen Pass
+  std::string outputFileName(argv[2]);
+  vcalc::LLVMIRGenerator llvmIRGenerator(outputFileName);
+  
   return 0;
 }

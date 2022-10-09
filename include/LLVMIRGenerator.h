@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 #include "llvm/IR/IRBuilder.h"
 #include "llvm/IR/LLVMContext.h"
 #include "llvm/IR/Module.h"
@@ -13,16 +15,25 @@ namespace vcalc {
         llvm::LLVMContext globalCtx;
         llvm::IRBuilder<> ir;
         llvm::Module mod;
-        std::shared_ptr<SymbolTable> symtab;
+        llvm::Function *mainFunction;
+
         size_t numExprAncestors;
-        LLVMIRGenerator(std::shared_ptr<SymbolTable> symtab);
+        LLVMIRGenerator(std::string &outputFileName);
         void visit(std::shared_ptr<AST> t);
         void visitChildren(std::shared_ptr<AST> t);
         void visitBLOCK_TOKEN(std::shared_ptr<AST> t);
         void visitVAR_DECLARATION_TOKEN(std::shared_ptr<AST> t);
         void visitASSIGNMENT_TOKEN(std::shared_ptr<AST> t);
+        void visitBinaryOperationToken(std::shared_ptr<AST> t);
+        void visitRANGE(std::shared_ptr<AST> t);
         void visitGENERATOR_TOKEN(std::shared_ptr<AST> t);
         void visitFILTER_TOKEN(std::shared_ptr<AST> t);
         void visitID(std::shared_ptr<AST> t);
+        void visitINTEGER(std::shared_ptr<AST> t);
+        void visitPARENTHESIS_TOKEN(std::shared_ptr<AST> t);
+        void visitPRINT(std::shared_ptr<AST> t);
+        void visitEXPR_TOKEN(std::shared_ptr<AST> t);
+        void visitLOOP_TOKEN(std::shared_ptr<AST> t);
+        void visitCONDITIONAL_TOKEN(std::shared_ptr<AST> t);
     };
 }

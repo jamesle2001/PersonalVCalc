@@ -65,8 +65,7 @@ namespace vcalc {
 
     void ExpressionTypeComputation::visitBinaryOperationToken(std::shared_ptr<AST> t) {
         // This method run only when this AST node is: "+", "-", "*", "/", "<", ">", "==", "!="
-        visit(t->children[0]);  // Compute the type of subexpression
-        visit(t->children[1]);  // Compute the type of subexpression
+        visitChildren(t);  // Compute the type of subexpression
 
         // Type promotion
         if (t->children[0]->evalType->getName() == "vector" && t->children[1]->evalType->getName() == "vector") {
@@ -87,25 +86,26 @@ namespace vcalc {
         }
         else {
             t->evalType = std::dynamic_pointer_cast<Type>(symtab->globals->resolve("int"));
+            t->promoteToType = nullptr;
             t->children[0]->promoteToType = nullptr;
             t->children[1]->promoteToType = nullptr;
         }
     }
 
     void ExpressionTypeComputation::visitPARENTHESIS_TOKEN(std::shared_ptr<AST> t) {
-        visit(t->children[0]);  // Compute the type of subexpression
+        visitChildren(t);  // Compute the type of subexpression
         t->evalType = t->children[0]->evalType;
         t->promoteToType = nullptr;
     }
 
     void ExpressionTypeComputation::visitRANGE(std::shared_ptr<AST> t) {
-        visit(t->children[0]);  // Compute the type of subexpression
-        visit(t->children[1]);  // Compute the type of subexpression
+        visitChildren(t);  // Compute the type of subexpression
         t->evalType = std::dynamic_pointer_cast<Type>(symtab->globals->resolve("vector"));
         t->promoteToType = nullptr;
     }
 
     void ExpressionTypeComputation::visitINDEX_TOKEN(std::shared_ptr<AST> t) {
+        visitChildren(t);
         t->evalType = std::dynamic_pointer_cast<Type>(symtab->globals->resolve("int"));
         t->promoteToType = nullptr;
     }

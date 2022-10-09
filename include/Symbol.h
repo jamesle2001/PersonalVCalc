@@ -6,6 +6,9 @@
 #include "Type.h"
 #include "Scope.h"
 #include "AST.h"
+#include "llvm/IR/IRBuilder.h"
+#include "llvm/IR/LLVMContext.h"
+#include "llvm/IR/Module.h"
 
 namespace vcalc {
     class Scope; // forward declaration of Scope to resolve circular dependency
@@ -15,6 +18,7 @@ namespace vcalc {
         std::string name;               // All symbols at least have a name
         std::shared_ptr<Type> type;
         std::shared_ptr<Scope> scope;   // All symbols know what scope contains them.
+        llvm::AllocaInst *llvmAllocaInst;   // Reference to LLVM-ALLOCA
 
         Symbol(std::string name);
         Symbol(std::string name, std::shared_ptr<Type> type);
